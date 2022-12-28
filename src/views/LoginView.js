@@ -58,7 +58,7 @@ export const LoginView = () => {
                 />
             </label>
             <button className={css.btn} type="submit">
-                Register
+                Log In
             </button>
         </form>
     )

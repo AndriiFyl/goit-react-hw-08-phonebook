@@ -1,21 +1,23 @@
 // ХУКИ=======================================================
-import css from './App.module.css';
-import ContactsList from './ContactsList';
-import ContactForm from './ContactForm';
-import Filter from './Filter/Filter';
+import { Phonebook } from './Phonebook/Phonebook';
 import { Navigation } from './Navigation/Navigation';
+import { Route, Routes } from 'react-router-dom';
+import { RegisterView } from 'views/RegisterView';
+import { LoginView } from 'views/LoginView';
+import { ContactsView } from 'views/ContactsView';
+import { HomeView } from 'views/HomeView';
 
 export default function App() {
   return (
     <>
       <Navigation />
-      <div className={css.container__form}>
-        <h1 className={css.head_title}>Phonebook</h1>
-        <ContactForm />
-        <h1 className={css.head_title}>Contacts</h1>
-        <Filter />
-        <ContactsList />
-      </div>
+      <Phonebook />
+      <Routes>
+        <Route exact path="/" component={<HomeView />} />
+        <Route path="/register" component={<RegisterView />} />
+        <Route path="/login" component={<LoginView />} />
+        <Route path="/contacts" component={<ContactsView />} />
+      </Routes>
     </>
   );
 }
