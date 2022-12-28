@@ -1,0 +1,21 @@
+.Container_Navigation {
+    width: 100%;
+    background-color: rgb(246, 215, 228);
+}
+
+.menu__container {
+    display: flex;
+    padding: 25px;
+    width: 100hw;
+    justify-content: center;
+}
+
+.menu__nav {
+    font-size: 20px;
+    color: blueviolet;
+    cursor: pointer;
+    text-decoration: none;
+    font-weight: bold;
+    margin-left: 20px;
+    text-transform: uppercase;
+}
