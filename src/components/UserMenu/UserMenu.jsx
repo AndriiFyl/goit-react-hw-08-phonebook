@@ -1,8 +1,10 @@
+import css from './UserMenu.module.css';
+
 export const UserMenu = () => {
   return (
-    <div>
+    <div className={css.logout__wrapper}>
       <p>mail@.com</p>
-      <button>Logout</button>
+      <button className={css.btn}>Logout</button>
     </div>
   );
 };

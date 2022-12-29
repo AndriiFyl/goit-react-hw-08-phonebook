@@ -1,6 +1,7 @@
 import { useState } from "react";
-// import { useSelector, useDispatch } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import css from './Common.module.css';
+import { register } from "redux/authorization/authOperations";
 
 
 export const RegisterView = () => {
@@ -10,12 +11,11 @@ export const RegisterView = () => {
     const [password, setPassword] = useState('');
 
 
-    //   const dispatch = useDispatch();
+    const dispatch = useDispatch();
 
     const handleChange = event => {
         const input = event.currentTarget;
 
-   
         switch (input.name) {
             case 'name':
                 setName(input.value);
@@ -36,7 +36,14 @@ export const RegisterView = () => {
 
     const handleSubmit = event => {
         event.preventDefault();
-        //   dispatch(addContact({ name, email, password }));
+        // відправляємо дані про користувача до операції register,
+        // де { name, email, password } запишуться до credentials і відправляться
+        // на сервер
+        dispatch(register({ name, email, password }));
+        // Після відправки інфи видаляємо дані з форми
+        setName('');
+        setEmail('');
+        setPassword('');
     };
 
 

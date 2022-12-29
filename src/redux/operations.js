@@ -2,7 +2,7 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from 'axios';
 
-axios.defaults.baseURL = 'https://639ed80e7aaf11ceb88c3361.mockapi.io/';
+// axios.defaults.baseURL = 'https://639ed80e7aaf11ceb88c3361.mockapi.io/';
 
 // в змінну fetchContacts записуємо createAsyncThunk - щоб зробити асинхронний запит
 // першим аргументом передаємо тип екшену - 'contacts/fetchContacts'

@@ -1,21 +1,28 @@
 .Container_Navigation {
     width: 100%;
-    background-color: rgb(246, 215, 228);
+    background-color: rgb(218, 133, 102);
+    display: flex;
+    justify-content: space-around;
+    align-items:center ;
 }
 
 .menu__container {
     display: flex;
-    padding: 25px;
     width: 100hw;
-    justify-content: center;
+    padding-top: 10px;
+    padding-bottom: 10px;
 }
 
-.menu__nav {
+.menu__nav__item {
     font-size: 20px;
-    color: blueviolet;
+    color: rgb(212, 231, 162);
     cursor: pointer;
     text-decoration: none;
     font-weight: bold;
-    margin-left: 20px;
     text-transform: uppercase;
 }
+
+.menu__nav__item:not(:last-child) {
+    margin-right: 20px;
+}
+

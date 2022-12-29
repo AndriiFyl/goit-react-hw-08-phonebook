@@ -1,5 +1,5 @@
 // ХУКИ=======================================================
-import { Phonebook } from './Phonebook/Phonebook';
+// import { Phonebook } from './Phonebook/Phonebook';
 import { Navigation } from './Navigation/Navigation';
 import { Route, Routes } from 'react-router-dom';
 import { RegisterView } from 'views/RegisterView';
@@ -11,12 +11,12 @@ export default function App() {
   return (
     <>
       <Navigation />
-      <Phonebook />
+      {/* <Phonebook /> */}
       <Routes>
-        <Route exact path="/" component={<HomeView />} />
-        <Route path="/register" component={<RegisterView />} />
-        <Route path="/login" component={<LoginView />} />
-        <Route path="/contacts" component={<ContactsView />} />
+        <Route exact path="/" element={<HomeView />} />
+        <Route path="register" element={<RegisterView />} />
+        <Route path="login" element={<LoginView />} />
+        <Route path="contacts" element={<ContactsView />} />
       </Routes>
     </>
   );

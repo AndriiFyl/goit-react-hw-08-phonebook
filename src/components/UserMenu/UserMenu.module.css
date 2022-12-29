@@ -1,0 +1,12 @@
+.logout__wrapper {
+    display: flex;
+    width: 150px ;
+    justify-content: space-between;
+    
+}
+
+.btn {
+    display: flex;
+    height: 40%;
+    align-items: center;
+}
