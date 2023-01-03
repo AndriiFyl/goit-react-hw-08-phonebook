@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 import css from './Common.module.css';
 import { register } from "redux/authorization/authOperations";
 

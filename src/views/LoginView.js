@@ -1,13 +1,14 @@
 import { useState } from "react";
-// import { useSelector, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 import css from './Common.module.css';
+import { logIn } from "redux/authorization/authOperations";
 
 export const LoginView = () => {
   
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     
-    //   const dispatch = useDispatch();
+      const dispatch = useDispatch();
 
     const handleChange = event => {
         const input = event.currentTarget;
@@ -30,7 +31,11 @@ export const LoginView = () => {
 
     const handleSubmit = event => {
         event.preventDefault();
-        //   dispatch(addContact({ name, email, password }));
+        // диспачимо об'єкт з нашої форми залогінбвання до authOperations - 
+        // саме до операції logIn
+          dispatch(logIn({ email, password }));
+          setEmail('');
+          setPassword('');
     };
 
 

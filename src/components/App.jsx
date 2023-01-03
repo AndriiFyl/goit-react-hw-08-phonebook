@@ -6,12 +6,21 @@ import { RegisterView } from 'views/RegisterView';
 import { LoginView } from 'views/LoginView';
 import { ContactsView } from 'views/ContactsView';
 import { HomeView } from 'views/HomeView';
+import { useDispatch } from 'react-redux';
+import { useEffect } from 'react';
+import { fetchCurrentUser } from 'redux/authorization/authOperations';
 
 export default function App() {
+  const dispatch = useDispatch();
+
+  // при маунті (рендері) нашого App робимо діспатч - викликаємо функцію запиту корстувача
+  useEffect(() => {
+    dispatch(fetchCurrentUser());
+  }, [dispatch]);
   return (
     <>
       <Navigation />
-      {/* <Phonebook /> */}
+
       <Routes>
         <Route exact path="/" element={<HomeView />} />
         <Route path="register" element={<RegisterView />} />

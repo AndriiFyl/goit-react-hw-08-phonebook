@@ -34,9 +34,11 @@ export const ContactsListItem = ({ contact }) => {
     if (isEdit && (name !== contact.name || number !== contact.number)) {
       return dispatch(
         editContact({
-          ...contact,
-          name,
-          number,
+          id: contact.id,
+          contact: {
+            name,
+            number,
+          },
         })
       );
     }

@@ -2,7 +2,9 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from 'axios';
 
-// axios.defaults.baseURL = 'https://639ed80e7aaf11ceb88c3361.mockapi.io/';
+axios.defaults.baseURL = 'https://connections-api.herokuapp.com';
+
+
 
 // в змінну fetchContacts записуємо createAsyncThunk - щоб зробити асинхронний запит
 // першим аргументом передаємо тип екшену - 'contacts/fetchContacts'
@@ -12,7 +14,11 @@ export const fetchContacts = createAsyncThunk(
   
   async (_, thunkAPI) => {
     try {
-      const response = await axios.get(`contacts`);
+      // метод, коли спочатку в authSlice (під час аутентифікації) записуємо значення token до localStorage, а тут використовуємо це значення, щоб
+      // зробити запит на бекенд (для запиту списку контактів, редагування контактів та їх видалення і потрібний token, щоб бекенд
+      // зміг ідентифікувати юзера і видати потрібну колекцію інфи
+      // const response = await axios.get('/contacts', { headers: { Authorization: localStorage.getItem('token') } });
+      const response = await axios.get('/contacts');
       return response.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
@@ -26,7 +32,8 @@ export const addContact = createAsyncThunk(
   
   async (contact, thunkAPI) => {
     try {
-      const response = await axios.post(`contacts`, contact);
+      // const response = await axios.post(`/contacts`, contact, {headers:{Authorization: localStorage.getItem('token')}});
+    const response = await axios.post(`/contacts`, contact);
       return response.data;
     } catch (error) {
        return thunkAPI.rejectWithValue(error.message)
@@ -41,7 +48,9 @@ export const deleteContact = createAsyncThunk(
   async (id, thunkAPI) => {
     try {
       // в response повертаємо id з бекенду - для видалення контакту
-     const response =  await axios.delete(`contacts/${id}`);
+      // const response = await axios.delete(`contacts/${id}`, {headers:{Authorization: localStorage.getItem('token')}});
+      const response = await axios.delete(`contacts/${id}`);
+
       return response.data.id;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message)
@@ -53,10 +62,9 @@ export const deleteContact = createAsyncThunk(
 export const editContact = createAsyncThunk(
   'contacts/editContact',
   
-  async (contact, thunkAPI) => {
+  async (contactInfo, thunkAPI) => {
     try {
-    
-     const response =  await axios.put(`contacts/${contact.id}`, contact);
+     const response =  await axios.patch(`contacts/${contactInfo.id}`, contactInfo.contact, {headers:{Authorization: localStorage.getItem('token')}} );
       return response.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error)

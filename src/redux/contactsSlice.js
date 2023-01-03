@@ -4,12 +4,69 @@ import { fetchContacts, addContact, deleteContact, editContact } from "./operati
 const contactsInitialState = {
     items: [],
     isLoading: false,
-    error: null
+    error: null,
 }
 
 export const contactsSlice = createSlice({
     name: "contacts",
     initialState: contactsInitialState,
+    extraReducers: {
+            [fetchContacts.pending] (state) {
+                state.isLoading = true;
+            },
+            [fetchContacts.fulfilled] (state, action)  {
+                state.items = action.payload;
+                //    після того як виконався успішний запит, знову змінюємо значення isLoading в state
+                state.isLoading = false;
+            },
+            [fetchContacts.rejected] (state, action)  {
+                state.error = action.payload;
+                //    записуємо до стейту isLoading = false, щоб коли сторінка крашнулась - у нас не висів Loading... 
+                state.isLoading = false;
+            },
+    
+        
+        
+           [addContact.pending] (state)  {
+               state.isLoading = true;
+           },
+           [addContact.fulfilled] (state, action) {
+               state.items.push(action.payload);
+              state.isLoading = false;
+           },
+           [addContact.rejected] (state, action)  {
+               state.error = action.payload;
+               state.isLoading = false;
+           },
+        
+           [deleteContact.pending] (state)  {
+               state.isLoading = true;
+           },
+           [deleteContact.fulfilled] (state, action)  {
+            const index = state.items.findIndex(
+            contact => contact.id === action.payload);
+            state.items.splice(index, 1);
+            state.isLoading = false;
+           },
+           [deleteContact.rejected] (state, action)  {
+               state.error = action.payload;
+               state.isLoading = false;
+           },
+        
+            [editContact.pending] (state)  {
+               state.isLoading = true;
+           },
+           [editContact.fulfilled] (state, action)  {
+              const index = state.items.findIndex(
+            contact => contact.id === action.payload.id);
+            state.items.splice(index, 1, action.payload);
+            state.isLoading = false;
+           },
+           [editContact.rejected] (state, action) {
+               state.error = action.payload;
+               state.isLoading = false;
+           },
+    }
     // в екстраред'юсер передаємо колбек-функцію, що приймає builder, який в свою чергу додає кейси для обробки
     // всіх запитів: pending, fulfilled та rejected
 //     extraReducers: builder => {
@@ -74,65 +131,7 @@ export const contactsSlice = createSlice({
 //             state.isLoading = false;
 //         });
 // },
-        // Запис без builder (через ключі)=======================
-        extraReducers: {
-            [fetchContacts.pending] (state) {
-                state.isLoading = true;
-            },
-            [fetchContacts.fulfilled] (state, action)  {
-                state.items = action.payload;
-                //    після того як виконався успішний запит, знову змінюємо значення isLoading в state
-                state.isLoading = false;
-            },
-            [fetchContacts.rejected] (state, action)  {
-                state.error = action.payload;
-                //    записуємо до стейту isLoading = false, щоб коли сторінка крашнулась - у нас не висів Loading... 
-                state.isLoading = false;
-            },
-    
-        
-        
-           [addContact.pending] (state)  {
-               state.isLoading = true;
-           },
-           [addContact.fulfilled] (state, action) {
-               state.items.push(action.payload);
-              state.isLoading = false;
-           },
-           [addContact.rejected] (state, action)  {
-               state.error = action.payload;
-               state.isLoading = false;
-           },
-        
-           [deleteContact.pending] (state)  {
-               state.isLoading = true;
-           },
-           [deleteContact.fulfilled] (state, action)  {
-            const index = state.items.findIndex(
-            contact => contact.id === action.payload);
-            state.items.splice(index, 1);
-            state.isLoading = false;
-           },
-           [deleteContact.rejected] (state, action)  {
-               state.error = action.payload;
-               state.isLoading = false;
-           },
-        
-            [editContact.pending] (state)  {
-               state.isLoading = true;
-           },
-           [editContact.fulfilled] (state, action)  {
-              const index = state.items.findIndex(
-            contact => contact.id === action.payload.id);
-            state.items.splice(index, 1, action.payload);
-            state.isLoading = false;
-           },
-           [editContact.rejected] (state, action) {
-               state.error = action.payload;
-               state.isLoading = false;
-           },
-    }
-  
+               
 });
 
 
