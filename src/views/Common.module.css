@@ -8,7 +8,14 @@
 .suggestion__register {
     display: block;
     margin-top: 40px;
-    color: #be1616;
+}
+
+.reference__route {
+    color:#be1616
+}
+
+.reference__route:active {
+    color: green;
 }
 
 .page {
