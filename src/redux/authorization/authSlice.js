@@ -37,6 +37,7 @@ const authSlice = createSlice({
 
         },
         [logOut.fulfilled](state) {
+            console.log(state);
             // скидаємо стейт до початкових значень
             state.user = { name: null, email: null };
             state.token = null;

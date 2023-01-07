@@ -70,7 +70,7 @@ export const logOut = createAsyncThunk('auth/logout',
 // token  і відбувається запит
 export const fetchCurrentUser = createAsyncThunk('auth/refresh',
     async (_, thunkAPI) => {
-        // thunkAPI.getState() - повнісю увесть стейт з Redux
+        // thunkAPI.getState() - повністю увесть стейт з Redux
         const state = thunkAPI.getState();
         const persistedToken = state.auth.token;
         
