@@ -8,9 +8,9 @@ export const UserMenu = () => {
   const email = useSelector(authSelectors.getUserEmail);
   return (
     <div className={css.logout__wrapper}>
-      <p>{email}</p>
+      <p className={css.email}>{email}</p>
       <button className={css.btn} onClick={() => dispatch(logOut())}>
-        Logout
+        Log Out
       </button>
     </div>
   );

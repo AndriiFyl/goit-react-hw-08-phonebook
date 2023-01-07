@@ -19,7 +19,9 @@ export const fetchContacts = createAsyncThunk(
       // зміг ідентифікувати юзера і видати потрібну колекцію інфи
       // const response = await axios.get('/contacts', { headers: { Authorization: localStorage.getItem('token') } });
       const response = await axios.get('/contacts');
+      
       return response.data;
+      
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
     }
@@ -33,7 +35,7 @@ export const addContact = createAsyncThunk(
   async (contact, thunkAPI) => {
     try {
       // const response = await axios.post(`/contacts`, contact, {headers:{Authorization: localStorage.getItem('token')}});
-    const response = await axios.post(`/contacts`, contact);
+      const response = await axios.post(`/contacts`, contact);
       return response.data;
     } catch (error) {
        return thunkAPI.rejectWithValue(error.message)
@@ -64,7 +66,8 @@ export const editContact = createAsyncThunk(
   
   async (contactInfo, thunkAPI) => {
     try {
-     const response =  await axios.patch(`contacts/${contactInfo.id}`, contactInfo.contact, {headers:{Authorization: localStorage.getItem('token')}} );
+    //  const response =  await axios.patch(`contacts/${contactInfo.id}`, contactInfo.contact, {headers:{Authorization: localStorage.getItem('token')}} );
+      const response =  await axios.patch(`contacts/${contactInfo.id}`, contactInfo.contact);
       return response.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error)

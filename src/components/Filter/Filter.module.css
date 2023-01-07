@@ -2,9 +2,31 @@
     margin-bottom: 20px;
     display: flex;
     flex-direction: column;
-    width: 250px;
-    line-height: 1.5;
-    color: grey;
     margin-left: auto;
     margin-right: auto;
+}
+
+.input {
+width: 350px;
+    height: 30px;
+    color: white;
+    border-radius: 15px;
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+    background-image: linear-gradient(to bottom,
+            #be1616 40%,
+            rgb(250, 118, 118));
+    border: none;
+    padding-left: 8px;
+    padding-right: 8px;
+    outline: none;
+}
+
+.input::placeholder {
+    color: rgba(255, 255, 255, 0.6);
+}
+
+.input:focus {
+    border: 2px solid rgba(69, 16, 16, 0.7);
 }

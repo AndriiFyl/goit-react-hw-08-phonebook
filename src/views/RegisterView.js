@@ -48,10 +48,16 @@ export const RegisterView = () => {
 
 
     return (
-        <form className={css.form} onSubmit={handleSubmit}>
+        <div className={css.page}>
+           
+            <form className={css.form} onSubmit={handleSubmit}>
+                 <h1 className={css.form__header}>REGISTRATION</h1>
             <label className={css.label__wrapper}>
-                Name{' '}
-                <input
+                
+                    <input
+                        autoComplete="off"
+                        className={css.input}
+                        placeholder='Username'
                     type="text"
                     value={name}
                     name="name"
@@ -62,8 +68,11 @@ export const RegisterView = () => {
                 />
             </label>
             <label className={css.label__wrapper}>
-                Email
-                <input
+                
+                    <input
+                        autoComplete="off"
+                         className={css.input}
+                        placeholder='Email'
                     type="email"
                     value={email}
                     name="email"
@@ -72,9 +81,12 @@ export const RegisterView = () => {
                 />
             </label>
             <label className={css.label__wrapper}>
-                Password
-                <input
-                    type="text"
+                
+                    <input
+                        autoComplete="off"
+                         className={css.input}
+                        placeholder='Password'
+                    type="password"
                     value={password}
                     name="password"
                     required
@@ -84,6 +96,7 @@ export const RegisterView = () => {
             <button className={css.btn} type="submit">
                 Register
             </button>
-        </form>
+            </form>
+            </div>
     )
 }

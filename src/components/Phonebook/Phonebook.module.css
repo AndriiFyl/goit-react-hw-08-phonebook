@@ -1,15 +1,26 @@
 .container__form {
+    padding: 20px;
+   
+display: flex;
+    flex-direction: column;
     width: 500px;
-    padding: 30px;
-    background-color: beige;
     margin-left: auto;
     margin-right: auto;
-    outline: 2px solid rgb(114, 114, 107, 0.5);
     border-radius: 4px;
-    margin-top: 20px;
+    background-image: linear-gradient(to right,
+            #d41d1d 10%,
+            rgb(236, 106, 106) 45%,
+            #d41d1d);
+
+    min-height: 500px;
+    box-shadow: 10px 10px 8px 2px rgba(0, 0, 0, 0.3);
 }
 
 .head_title {
-    color: rgb(85, 81, 81);
+    color: white;
     text-align: center;
+    font-size: 45px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    
 }

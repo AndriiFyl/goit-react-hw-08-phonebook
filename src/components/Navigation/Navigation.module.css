@@ -1,9 +1,15 @@
 .Container_Navigation {
     width: 100%;
-    background-color: rgb(218, 133, 102);
+    height: 60px;
+    /* background-color: rgb(39, 22, 16); */
+    background-image: linear-gradient(to right,
+                #4c4b4b 10%,
+                rgb(158, 149, 149) 40%,
+                #4c4b4b);
     display: flex;
     justify-content: space-around;
-    align-items:center ;
+    align-items:center;
+    
 }
 
 .menu__container {
@@ -15,14 +21,22 @@
 
 .menu__nav__item {
     font-size: 20px;
-    color: rgb(212, 231, 162);
+    color: rgb(9, 9, 9);
     cursor: pointer;
     text-decoration: none;
     font-weight: bold;
     text-transform: uppercase;
+   
+}
+
+
+.menu__nav__item:active {
+color: rgb(191, 17, 17);
 }
 
 .menu__nav__item:not(:last-child) {
     margin-right: 20px;
 }
+
+
 

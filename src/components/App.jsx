@@ -1,33 +1,70 @@
 // ХУКИ=======================================================
-// import { Phonebook } from './Phonebook/Phonebook';
 import { Navigation } from './Navigation/Navigation';
 import { Route, Routes } from 'react-router-dom';
 import { RegisterView } from 'views/RegisterView';
 import { LoginView } from 'views/LoginView';
 import { ContactsView } from 'views/ContactsView';
 import { HomeView } from 'views/HomeView';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
 import { fetchCurrentUser } from 'redux/authorization/authOperations';
+import PrivateRoute from './PrivateRoute';
+import RestrictedRoute from './RestrictedRoute';
+import { authSelectors } from 'redux/authorization/authSelectors';
+
+// const HomeView = lazy(() => import('../views/HomeView'));
+// const RegisterView = lazy(() => import('../views/RegisterView'));
+// const LoginView = lazy(() => import('../views/LoginView'));
+// const ContactsView = lazy(() => import('../views/ContactsView'));
 
 export default function App() {
   const dispatch = useDispatch();
+  const isRefreshing = useSelector(authSelectors.isRefreshing);
 
   // при маунті (рендері) нашого App робимо діспатч - викликаємо функцію запиту корстувача
   useEffect(() => {
     dispatch(fetchCurrentUser());
   }, [dispatch]);
   return (
-    <>
-      <Navigation />
+    // умова: якщо isRefreshing === false, то наша сторінка рендериться: це робиться, щоб уникнути миттєвого реендеру
+    // іншої сторінки
+    !isRefreshing && (
+      <>
+        <Navigation />
 
-      <Routes>
-        <Route exact path="/" element={<HomeView />} />
-        <Route path="register" element={<RegisterView />} />
-        <Route path="login" element={<LoginView />} />
-        <Route path="contacts" element={<ContactsView />} />
-      </Routes>
-    </>
+        <Routes>
+          <Route exact path="/" element={<HomeView />} />
+          <Route
+            path="register"
+            element={
+              <RestrictedRoute
+                redirectTo="/contacts"
+                component={<RegisterView />}
+              />
+            }
+          />
+          <Route
+            path="login"
+            element={
+              <RestrictedRoute
+                redirectTo="/contacts"
+                component={<LoginView />}
+              />
+            }
+          />
+
+          <Route
+            path="contacts"
+            element={
+              <PrivateRoute
+                redirectTo="/contacts"
+                component={<ContactsView />}
+              />
+            }
+          />
+        </Routes>
+      </>
+    )
   );
 }
 // // ХУКИ=======================================================

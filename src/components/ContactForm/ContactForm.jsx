@@ -54,10 +54,12 @@ export default function ContactForm() {
   };
 
   return (
-    <form className={css.form} onSubmit={handleSubmit}>
-      <label className={css.label__wrapper}>
-        Name{' '}
+    <div className={css.page}>
+      <form className={css.form} onSubmit={handleSubmit}>
         <input
+          autoComplete="off"
+          placeholder="Name"
+          className={css.input}
           type="text"
           value={name}
           name="name"
@@ -66,10 +68,11 @@ export default function ContactForm() {
           required
           onChange={handleChange}
         />
-      </label>
-      <label className={css.label__wrapper}>
-        Number
+
         <input
+          autoComplete="off"
+          placeholder="Number"
+          className={css.input}
           type="tel"
           value={number}
           name="number"
@@ -78,11 +81,12 @@ export default function ContactForm() {
           required
           onChange={handleChange}
         />
-      </label>
-      <button className={css.btn} type="submit">
-        Add contact
-      </button>
-    </form>
+
+        <button className={css.btn} type="submit">
+          Add contact
+        </button>
+      </form>
+    </div>
   );
 }
 

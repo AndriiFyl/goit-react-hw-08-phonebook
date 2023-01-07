@@ -49,8 +49,8 @@ export const ContactsListItem = ({ contact }) => {
       {isEdit ? (
         <>
           <label>
-            Name
             <input
+              className={css.input}
               onChange={handleChange}
               name="name"
               type="text"
@@ -59,8 +59,8 @@ export const ContactsListItem = ({ contact }) => {
           </label>
           {'  '}
           <label>
-            Number
             <input
+              className={css.input}
               onChange={handleChange}
               name="number"
               type="text"
@@ -75,7 +75,22 @@ export const ContactsListItem = ({ contact }) => {
         </>
       )}
       <div className={css.buttons__wrapper}>
-        <button className={css.btn} type="button" onClick={handleEdit}>
+        <button
+          style={
+            isEdit
+              ? {
+                  backgroundImage: 'linear-gradient(goldenrod, goldenrod)',
+                  color: 'black',
+                }
+              : {
+                  backgroundImage:
+                    'linear-gradient(rgb(190, 22, 22) 40%, rgb(250, 118, 118))',
+                }
+          }
+          className={css.btn}
+          type="button"
+          onClick={handleEdit}
+        >
           {isEdit ? 'Save' : 'Edit'}
         </button>
 

@@ -1,0 +1,107 @@
+.home__grettings {
+    font-size: 35px;
+    display: block;
+    text-align: center;
+    font-weight: 500;
+}
+
+.suggestion__register {
+    display: block;
+    margin-top: 40px;
+    color: #be1616;
+}
+
+.page {
+    padding-top: 40px;
+    width: 100vw;
+    height: 100vh;
+    background-image: linear-gradient(to right,
+            #676666 10%,
+            rgb(232, 232, 232) 40%,
+            #676666);
+    
+}
+
+
+.form__header {
+    padding-top: 30px;
+    margin-bottom: 60px;
+    display: flex;
+    color: white;
+    font-weight: bold;
+    font-size: 40px;
+    justify-content: space-around;
+}
+
+
+.form {
+    display: flex;
+    flex-direction: column;
+    width: 400px;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 4px;
+    background-image: linear-gradient(to right,
+            #d41d1d 10%,
+            rgb(236, 106, 106) 45%,
+            #d41d1d);
+
+    height: 500px;
+    box-shadow: 10px 10px 8px 2px rgba(0, 0, 0, 0.3);
+    
+}
+
+
+.input {
+    width: 300px;
+    height: 35px;
+    color: white;
+    border-radius: 15px;
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+    margin-bottom: 30px;
+    background-image: linear-gradient(to bottom,
+            #be1616 40%,
+            rgb(250, 118, 118));
+    border: none;
+    padding-left: 5px;
+    padding-right: 5px;
+    outline: none;
+}
+
+.input::placeholder {
+    color: rgba(255, 255, 255, 0.5);
+}
+
+.input:focus {
+    border: 2px solid rgb(69, 16, 16, 0.7);
+}
+
+.btn {
+    margin-top: 40px;
+    width: 250px;
+    height: 50px;
+    background-color: goldenrod;
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+    border: none;
+    border-radius: 30px;
+    color: white;
+    font-size: 25px;
+
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.btn:hover {
+    background-color: white;
+    color:goldenrod ;
+}
+
+.btn:active {
+    color: green;
+}

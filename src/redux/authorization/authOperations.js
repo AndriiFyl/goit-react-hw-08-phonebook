@@ -20,7 +20,8 @@ const token = {
 // в credentials буде записуватись весь об'єкт з інфою (name, password, email), 
 // який ми будемо передавати сюди(діспатчити)з форми реєстрації
  
-export const register = createAsyncThunk('auth/register', async credentials => {
+export const register = createAsyncThunk('auth/register',
+    async (credentials, thunkAPI) => {
     try {
         // '/users/signup' - беремо з документації бекенда, і відповідно ця частина адреси
         // додасться до дефолтного baseURL і об'єкт з інфою про нового користувача
@@ -32,36 +33,38 @@ export const register = createAsyncThunk('auth/register', async credentials => {
         // повертаємо результат відповіді з бекенда
         return data;
     } catch (error) {
-        // error
+        return thunkAPI.rejectWithValue(error.message);
     }
 });
 
 
-// операція для входу (log in)
-export const logIn = createAsyncThunk('auth/login', async credentials => {
+// операція для входу (log in)===========================================
+export const logIn = createAsyncThunk('auth/login',
+        async (credentials, thunkAPI) => {
     try {
         const { data } = await axios.post('/users/login', credentials);
         token.set(data.token);
         return data;
     }
     catch (error) {
-        // error
+        return thunkAPI.rejectWithValue(error.message);
     }
 });
 
-// операція для розлогінювання (log out)
+// операція для розлогінювання (log out)==================================
 
-export const logOut = createAsyncThunk('auth/logout', async () => {
+export const logOut = createAsyncThunk('auth/logout',
+    async (_, thunkAPI) => {
     try {
         await axios.post('/users/logout');
         token.unset();
     }
     catch (error) {
-        // error
+         return thunkAPI.rejectWithValue(error.message);
     }
 });
 
-// операція оновлення користувача
+// операція оновлення користувача==============================================
 // Логіка: завантажуємо додаток і відразу запускається fetchCurrentUser (в App useEffect)
 // і якщо token був в localStorage (не null) і відповідно Persist його додав до state, то ми сетимо
 // token  і відбувається запит
@@ -87,6 +90,6 @@ export const fetchCurrentUser = createAsyncThunk('auth/refresh',
             return data;
 
         } catch (error) {
-            // error
+             return thunkAPI.rejectWithValue(error.message);
         }
 });

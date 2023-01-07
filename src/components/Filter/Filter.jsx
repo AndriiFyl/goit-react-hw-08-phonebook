@@ -34,8 +34,12 @@ const Filter = () => {
 
   return (
     <label className={css.filter__wrapper}>
-      Find contacts by Name
-      <input type="text" onChange={changeFilter}></input>
+      <input
+        placeholder="Find contact"
+        className={css.input}
+        type="text"
+        onChange={changeFilter}
+      ></input>
     </label>
   );
 };

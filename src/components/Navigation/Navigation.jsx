@@ -11,6 +11,11 @@ export const Navigation = () => {
       <NavLink className={css.menu__nav__item} to="/">
         <div>Home</div>
       </NavLink>
+      {isLoggedIn && (
+        <NavLink className={css.menu__nav__item} to="/contacts">
+          <div>Contacts</div>
+        </NavLink>
+      )}
 
       {!isLoggedIn ? (
         <div className={css.menu__container}>
@@ -22,12 +27,7 @@ export const Navigation = () => {
           </NavLink>
         </div>
       ) : (
-        <>
-          <NavLink className={css.menu__nav__item} to="/contacts">
-            <div>Contacts</div>
-          </NavLink>
-          <UserMenu />
-        </>
+        <UserMenu />
       )}
     </div>
   );
